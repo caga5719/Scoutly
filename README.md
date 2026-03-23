@@ -1,1 +1,2 @@
 # Scoutly
+Is a platform built to help sales teams find higher quality leads by matching sales reps with leads based off business, local, and personal commonalities. The same can be said for potential clients on the platform who need specific services with specific personalities involved. The overall time, effort, and effectiveness of matching services with clients will be improved while allowing the individuals to create business by leaning on similarity-attraction effect factor.
