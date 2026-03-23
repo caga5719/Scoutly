@@ -198,7 +198,7 @@ Lead Upload Batch (1) ──< (Many) Client Rep
 | **Auth**           | JWT tokens (via FastAPI) | Simple, stateless, well-documented for learning                                         |
 | **Scraping**       | BeautifulSoup + Playwright | BS4 for simple HTML pages, Playwright for JS-rendered sites; start simple, scale up as needed |
 | **AI / Matching**  | distilbert-base-uncased (Similarity Scoring)/Claude API (Data Enrichment)  | Claude enriches scraped data into structured profiles and powers the "why" behind each match while dsitlbert calculates similarity scoring with low cost and overhead |
-| **Embeddings**     | sentence-transformers   | Free, local, fast; generates vectors for semantic similarity scoring                     |
+| **Embeddings**     | sentence-transformers (SBERT)   | Free, local, fast; generates vectors for semantic similarity scoring                     |
 | **Task Queue**     | Celery + Redis          | Scraping and enrichment are slow — offload to background workers so the UI stays responsive |
 | **Deployment**     | Docker + Railway or Render | Containerized for consistency; Railway/Render are simple to deploy for a solo dev without DevOps overhead |
 
