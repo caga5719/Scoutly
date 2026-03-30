@@ -12,7 +12,7 @@ Sales teams and their potential clients.
 
 ## 3. What is gonna make it valuable?
 
-To help sales teams find higher quality leads by matching individuals with prospects based off business, local, and personal commonalities. The same can be said for potential clients on the platform who need specific services with specific personalities involved. The overall time, effort, and effectiveness of matching services with clients will be improved. Increase the ease leaning on similarity-attraction effect factor.
+To help sales teams find higher quality leads by matching individuals with prospects based off business, local, and personal commonalities. The same can be said for potential clients on the platform who need specific services with specific personalities involved. The overall time, effort, and effectiveness of matching services with clients will be improved. This is done by leaning on the similarity-attraction effect factor.
 
 ---
 
@@ -84,7 +84,6 @@ To help sales teams find higher quality leads by matching individuals with prosp
 | Lead Pool   | List     | All Client Reps uploaded by this enterprise     |
 | Created_At  | DateTime |                                                 |
 
-> **Why Enterprise?** Your requirements mention "leads given from an enterprise" — this model lets you group Sales Users and their shared Lead Pools under one roof, which sets you up for multi-tenancy later.
 
 ---
 
@@ -110,8 +109,6 @@ Lead Upload Batch (1) ──< (Many) Client Rep
 - A Lead Upload Batch groups Client Reps that were uploaded together, tied to an Enterprise.
 - Lead Match is the join table — it holds the Similarity_Score, Key_Similarities_List, and the relationship between a specific Sales User and a specific Client Rep.
 
-> **Why a join table (Lead Match)?** The same lead could be a great fit for one Sales User and a poor fit for another. The match data (score, similarities) is specific to the *pair*, not to either person alone.
-
 ---
 
 ## 7. MVP — Absolute Minimum
@@ -119,7 +116,7 @@ Lead Upload Batch (1) ──< (Many) Client Rep
 - [ ] Sales User can create an account and log in securely
 - [ ] Sales User can fill out their own profile (name, industry, hobbies, location, etc.)
 - [ ] Sales User can upload a lead file (CSV) containing basic Client Rep info
-- [ ] System processes the file: enriches data via public scraping, generates embeddings, computes Similarity Scores
+- [ ] System processes the file: enriches data via public scraping, generates embeddings
 - [ ] Dashboard displays ranked list of best-matched leads with Key Similarities highlighted
 - [ ] Sales User can filter matches by personal, business, and/or local traits
 - [ ] Sales User can click into a lead profile to see full details and match reasoning
@@ -132,8 +129,6 @@ Lead Upload Batch (1) ──< (Many) Client Rep
 - No statistics/charts beyond the ranked list
 - No Lead Map
 - No enterprise admin settings
-
-> **Why strip it this far?** You want to validate that the core loop works — upload leads, get ranked matches, see why. Everything else is enhancement. If this core isn't valuable, none of the extras matter.
 
 ---
 
@@ -156,7 +151,7 @@ Lead Upload Batch (1) ──< (Many) Client Rep
 ### Screen 4: Lead Profile Detail
 - Full Client Rep info
 - Similarity Score prominently displayed
-- Key Similarities listed and ranked
+- Rank in matches pulled
 - Likelihood for Business rating (if available)
 - Lead Status selector (New → Contacted → Qualified → etc.)
 - Last Reach Out date (editable)
@@ -194,10 +189,10 @@ Lead Upload Batch (1) ──< (Many) Client Rep
 |--------------------|-------------------------|------------------------------------------------------------------------------------------|
 | **Backend**        | Python FastAPI          | Async-first (critical for scraping + LLM calls), built-in Pydantic validation for your data models, auto-generated API docs for testing |
 | **Frontend**       | React.js               | Component-based (dashboard, lead cards, filters map well to components), huge ecosystem for charts (Recharts) and tables |
-| **Database**       | PostgreSQL + pgvector + (Redis vs Mongo DB?) | Relational structure fits your data models cleanly; pgvector extension stores and queries embeddings without needing a separate vector DB; NEED TO DECIDE ON STORING UNSTRUCTURED DATA FROM SCRAPING| 
+| **Database**       | PostgreSQL + pgvector + (Redis vs Mongo DB?) (Hosted with AWS RDS Free Tier)| Relational structure fits your data models cleanly; pgvector extension stores and queries embeddings without needing a separate vector DB; NEED TO DECIDE ON STORING UNSTRUCTURED DATA FROM SCRAPING| 
 | **Auth**           | JWT tokens (via FastAPI) | Simple, stateless, well-documented for learning                                         |
 | **Scraping**       | BeautifulSoup + Playwright | BS4 for simple HTML pages, Playwright for JS-rendered sites; start simple, scale up as needed |
-| **AI / Matching**  | distilbert-base-uncased (Similarity Scoring)/Claude API (Data Enrichment)  | Claude enriches scraped data into structured profiles and powers the "why" behind each match while dsitlbert calculates similarity scoring with low cost and overhead |
+| **AI / Matching**  | TBD for pulling specific key words from profiles
 | **Embeddings**     | sentence-transformers (SBERT)   | Free, local, fast; generates vectors for semantic similarity scoring                     |
 | **Task Queue**     | Celery + Redis          | Scraping and enrichment are slow — offload to background workers so the UI stays responsive |
 | **Deployment**     | Docker + Railway or Render | Containerized for consistency; Railway/Render are simple to deploy for a solo dev without DevOps overhead |
