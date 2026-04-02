@@ -2,7 +2,6 @@ from sentence_transformers import SentenceTransformer
 import psycopg2
 from fastapi import FastAPI
 from pydantic import BaseModel
-from sentence_transformers import SentenceTransformer
 
 app = FastAPI()
 conn = psycopg2.connect(
