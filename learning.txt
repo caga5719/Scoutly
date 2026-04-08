@@ -1,0 +1,3 @@
+Learning:
+    What is spacy?
+        It is a nlp library that allows you to better grasp the meaning of text documents

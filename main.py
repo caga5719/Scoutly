@@ -2,7 +2,8 @@ import sys
 
 
 def main():
-    print(sys.executable)
+    index = "string, hello, world".rfind(',')
+    print(index)
 
 
 if __name__ == "__main__":
